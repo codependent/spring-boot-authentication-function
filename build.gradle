@@ -18,6 +18,8 @@ repositories {
 ext {
     set('springCloudVersion', 'Greenwich.SR1')
     springCloudFunctionVersion = "2.0.1"
+    awsLambdaEventsVersion = "2.2.6"
+    awsLambdaCoreVersion = "1.2.0"
 }
 
 dependencies {
@@ -26,6 +28,8 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-function-context'
     implementation 'com.auth0:java-jwt:3.8.0'
     implementation 'org.springframework.cloud:spring-cloud-function-adapter-aws'
+    compileOnly("com.amazonaws:aws-lambda-java-events:${awsLambdaEventsVersion}")
+    compileOnly("com.amazonaws:aws-lambda-java-core:${awsLambdaCoreVersion}")
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
@@ -46,6 +50,12 @@ compileTestKotlin {
     kotlinOptions {
         freeCompilerArgs = ['-Xjsr305=strict']
         jvmTarget = '1.8'
+    }
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.codependent.springcloud.function.authentication.SpringBootAuthenticationFunctionApplication'
     }
 }
 
