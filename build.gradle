@@ -17,7 +17,7 @@ repositories {
 
 ext {
     set('springCloudVersion', 'Greenwich.SR1')
-    springCloudFunctionVersion = "2.0.1"
+    springCloudFunctionVersion = "2.1.0.M1"
     awsLambdaEventsVersion = "2.2.6"
     awsLambdaCoreVersion = "1.2.0"
 }
